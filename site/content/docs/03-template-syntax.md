@@ -121,7 +121,6 @@ An element or component can have multiple spread attributes, interspersed with r
 <input {...$$restProps}>
 ```
 
-
 > The `value` attribute of an `input` element or its children `option` elements must not be set with spread attributes when using `bind:group` or `bind:checked`. Svelte needs to be able to see the element's `value` directly in the markup in these cases so that it can link it to the bound variable.
 
 > Sometimes, the attribute order matters as Svelte sets attributes sequentially in JavaScript. For example, `<input type="range" min="0" max="1" value={0.5} step="0.1"/>`, Svelte will attempt to set the value to `1` (rounding up from 0.5 as the step by default is 1), and then set the step to `0.1`. To fix this, change it to `<input type="range" min="0" max="1" step="0.1" value={0.5}/>`.
@@ -148,6 +147,16 @@ Text can also contain JavaScript expressions:
 
 <div>{(/^[A-Za-z ]+$/).test(value) ? x : y}</div>
 ```
+
+---
+
+To include regular curly braces in the HTML, they must either be included as string Javascript expressions or their [HTML Entity](https://developer.mozilla.org/docs/Glossary/Entity) strings used
+
+```html
+{'{'} in curly braces {'}'} or &lbrace; in curly braces &rbrace; or &lcub; in curly braces &rcub;
+```
+
+---
 
 ### Comments
 
